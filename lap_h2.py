@@ -24,6 +24,10 @@ def solve(costs, people, tasks, seq):
         total_cost += min_cost
     return total_cost
 
+def calcSDPI():
+    pass
+# insert stuff here
+
 #
 # main
 #
