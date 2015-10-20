@@ -25,8 +25,20 @@ def solve(costs, people, tasks, seq):
     return total_cost
 
 def calcSDPI():
-    pass
-# insert stuff here
+    while True:
+        minval = 0
+        swapi = -1
+        swapj = -1
+        for i in range(n-1):
+            for j in range(i+1,n):
+                if change(i,j) < minval:
+                    minval = chang(i,j)
+                    swapi = i
+                    swapj = j
+    if minval<0:
+        swap(swapi,swapj)
+    else
+        break
 
 #
 # main
