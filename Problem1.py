@@ -1,5 +1,5 @@
 import sys
-#from random import sample
+import random
 import lap
 #from lap_h2 import solve 
 
@@ -7,10 +7,10 @@ import lap
 # let k be the task assigned to i
 # let l be the task assigned to j
 
-# def swap(i,j):
-#     temp = people[i]
-#     people[i] = people[j]
-#     people[j] = temp
+def swap(i,j, people):
+    temp = people[i]
+    people[i] = people[j]
+    people[j] = temp
     
 # def change(i,j):
 #     pass
@@ -29,14 +29,24 @@ def main():
     # initial solution with the "natural" sequence
     #cost = solve(costs, people, tasks, range(len(people)))     
     #costs, people, tasks = lap.initialize(fname, 1) 
-    i = 0
-    j = 1
+    i = 10
+    j = 12
     k = people[i]
     l = people[j]
-    print costs[i][k]
+    costs[i][k]
     costs[j][l]
+    swap(i,j,people)
     change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
-    print change
+    if change < 0:
+        swap(i,j, people)
+    for n in range(100):
+        j = random.random()
+        i = random.random()
+        k = people[i]
+        l = people[j]
+        change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
+        if change < 0:
+            swap(i,j)
     print 'this worked'
 #     if change < 0
 #         swap(i,j)
