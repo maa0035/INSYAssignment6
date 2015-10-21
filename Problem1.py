@@ -33,21 +33,23 @@ def main():
     j = 12
     k = people[i]
     l = people[j]
+    print k
+    print l
     costs[i][k]
     costs[j][l]
-    swap(i,j,people)
     change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
     if change < 0:
         swap(i,j, people)
     for n in range(100):
-        j = random.random()
-        i = random.random()
+        i, j = random.sample(range(len(people)), 2)
         k = people[i]
         l = people[j]
         change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
         if change < 0:
-            swap(i,j)
-    print 'this worked'
+            swap(i,j, people)
+#     p = 0
+#     for p in range(len(people)):
+#         print people[p]
 #     if change < 0
 #         swap(i,j)
 #     for n in range(100000):
