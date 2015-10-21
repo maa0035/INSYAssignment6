@@ -1,7 +1,7 @@
 import sys
-from random import sample
+#from random import sample
 import lap
-from lap_h2 import solve 
+#from lap_h2 import solve 
 
 #problem 1
 # let k be the task assigned to i
@@ -12,34 +12,28 @@ from lap_h2 import solve
 #     people[i] = people[j]
 #     people[j] = temp
     
-def change(i,j):
-    pass
+# def change(i,j):
+#     pass
         
  
 def main(): 
-    # default values
-    nreps = 100
+# initialize parameters then check for command line changes
+    show_intermediate = 1
     fname = 'r.csv'
-    # argv[0] - file name
-    # argv[1] - number of replications
     if len(sys.argv) > 1:
         fname = sys.argv[1]
         if len(sys.argv) > 2:
-            try:
-                nreps = int(sys.argv[2])
-            except:
-                print 'Invalid parameters.  Syntax: lab_h2.py fname nreps'
-                exit()
-    # initialize
+            show_intermediate = int(sys.argv[2])
+    # initialize the data structures using the cost matrix file
     costs, people, tasks = lap.initialize(fname, 1)
     # initial solution with the "natural" sequence
-    cost = solve(costs, people, tasks, range(len(people)))     
-    costs, people, tasks = lap.initialize(fname, 1) 
+    #cost = solve(costs, people, tasks, range(len(people)))     
+    #costs, people, tasks = lap.initialize(fname, 1) 
     i = 0
     j = 1
     k = people[i]
     l = people[j]
-    costs[i][k]
+    print costs[i][k]
     costs[j][l]
     change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
     print change
@@ -50,3 +44,6 @@ def main():
 #         i,j = random.sample(2)
 #         if change(i,j) < 0:
 #             swap(i,j)
+# if cmd line, execute main
+if __name__ == '__main__' : main()
+
