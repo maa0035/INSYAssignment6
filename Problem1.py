@@ -17,7 +17,7 @@ def swap(i,j, people):
         
  
 def main(): 
-# initialize parameters then check for command line changes
+    # initialize parameters then check for command line changes
     show_intermediate = 1
     fname = 'r.csv'
     if len(sys.argv) > 1:
@@ -26,36 +26,27 @@ def main():
             show_intermediate = int(sys.argv[2])
     # initialize the data structures using the cost matrix file
     costs, people, tasks = lap.initialize(fname, 1)
-    # initial solution with the "natural" sequence
-    #cost = solve(costs, people, tasks, range(len(people)))     
-    #costs, people, tasks = lap.initialize(fname, 1) 
-    i = 10
-    j = 12
-    k = people[i]
-    l = people[j]
-    print k
-    print l
-    costs[i][k]
-    costs[j][l]
-    change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
-    if change < 0:
-        swap(i,j, people)
-    for n in range(100):
+    for k in range(len(people)):
+        # find the low cost task for this person
+        task, min_cost = lap.low_cost_task(costs, k, tasks)
+        # assign task to person and person to task
+        people[k] = task
+        tasks[task] = k
+    #Calculate Problem 1 Algorithm
+#     totalcost = 0
+    for n in range(100000):
         i, j = random.sample(range(len(people)), 2)
         k = people[i]
         l = people[j]
         change = -costs[i][k] - costs[j][l] + costs[i][l] + costs[j][k]
         if change < 0:
             swap(i,j, people)
-#     p = 0
-#     for p in range(len(people)):
-#         print people[p]
-#     if change < 0
-#         swap(i,j)
-#     for n in range(100000):
-#         i,j = random.sample(2)
-#         if change(i,j) < 0:
-#             swap(i,j)
-# if cmd line, execute main
+#     for index in range(25):
+#         totalcost += costs[index][people[index]]
+#         print people[index]
+#     print totalcost
+    print '\nFinal solution:'
+    lap.show_solution(costs, people, tasks)
+
 if __name__ == '__main__' : main()
 
